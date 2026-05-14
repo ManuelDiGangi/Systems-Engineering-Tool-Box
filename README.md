@@ -79,7 +79,7 @@ Questa è la sezione da usare quando non ricordi il comando ma ricordi cosa devi
 | interrogare un record specifico | `dig dominio TIPO` | Esempio: `dig example.com MX` |
 | interrogare usando un DNS specifico | `dig @8.8.8.8 example.com A` | Bypassa resolver locale |
 | ottenere solo il valore | `dig +short example.com A` | Output pulito per script |
-| fare reverse lookup/PTR | `dig -x 8.8.8.8` | Risoluzione inversa IP â†’ nome |
+| fare reverse lookup/PTR | `dig -x 8.8.8.8` | Risoluzione inversa IP -> nome |
 | usare nslookup per record specifico | `nslookup -type=MX example.com` | Alternativa classica |
 | usare host per query rapida | `host -t ns example.com` | Molto leggibile |
 | tentare zone transfer autorizzato | `host -l dominio dns_server` | Solo dove autorizzato |
@@ -245,7 +245,7 @@ winget install BurntSushi.ripgrep.MSVC
 | listener TCP locale | `nc -l -v -p 4444` | diagnostica/lab |
 | client TCP con socat | `echo -en "GET / HTTP/1.0\r\n\r\n" \| socat - TCP4:localhost:80` | `-` indica STDIN/STDOUT |
 | server TCP minimale | `socat TCP4-LISTEN:4444 STDOUT` | stampa su STDOUT |
-| port forwarder TCP | `socat TCP4-LISTEN:8080,fork TCP4:server_remoto:80` | inoltra traffico locale â†’ remoto |
+| port forwarder TCP | `socat TCP4-LISTEN:8080,fork TCP4:server_remoto:80` | inoltra traffico locale -> remoto |
 
 ## Opzioni ss pià¹ usate
 
@@ -270,11 +270,11 @@ winget install BurntSushi.ripgrep.MSVC
 
 | Record | Significato | Uso |
 |---|---|---|
-| `A` | hostname â†’ IPv4 | risoluzione base IPv4 |
-| `AAAA` | hostname â†’ IPv6 | risoluzione base IPv6 |
+| `A` | hostname -> IPv4 | risoluzione base IPv4 |
+| `AAAA` | hostname -> IPv6 | risoluzione base IPv6 |
 | `NS` | name server autorevoli | delega/autorità  zona |
 | `MX` | mail exchanger | server di posta del dominio |
-| `PTR` | IP â†’ hostname | reverse DNS lookup |
+| `PTR` | IP -> hostname | reverse DNS lookup |
 | `CNAME` | alias verso altro nome DNS | alias DNS |
 | `TXT` | testo/policy/verifiche | SPF, DKIM, DMARC, verifiche provider |
 
@@ -285,7 +285,7 @@ winget install BurntSushi.ripgrep.MSVC
 | interrogare record specifico con dig | `dig example.com A` | sostituisci `A` con `MX`, `TXT`, ecc. |
 | usare DNS specifico | `dig @8.8.8.8 example.com MX` | bypass resolver locale |
 | output sintetico | `dig +short example.com TXT` | comodo per script |
-| reverse lookup PTR | `dig -x 8.8.8.8` | IP â†’ nome |
+| reverse lookup PTR | `dig -x 8.8.8.8` | IP -> nome |
 | interrogare record con nslookup | `nslookup -type=MX example.com` | alternativa classica |
 | query NS con host | `host -t ns example.com` | output leggibile |
 | zone transfer autorizzato | `host -l example.com ns1.example.com` | solo se autorizzato |
