@@ -2,7 +2,7 @@
 
 > Documento master per consultazione rapida. Usa `CTRL+F` cercando il comando (`dig`, `ss`, `ffuf`) oppure l'esigenza operativa (`record inverso`, `porte in ascolto`, `directory web`, `filesystem pieno`).
 
-**Scope:** usare le sezioni offensive solo in laboratorio, CTF, ambienti propri o attivitÃ  autorizzate. La toolbox è pensata per amministrazione, troubleshooting, hardening e test di sicurezza autorizzati.
+**Scope:** usare le sezioni offensive solo in laboratorio, CTF, ambienti propri o attività  autorizzate. La toolbox è pensata per amministrazione, troubleshooting, hardening e test di sicurezza autorizzati.
 
 ---
 
@@ -56,7 +56,7 @@ Questa è la sezione da usare quando non ricordi il comando ma ricordi cosa devi
 |---|---|---|
 | confrontare due file | `diff file1 file2` | Mostra differenze riga per riga |
 | confrontare file ordinati su 3 colonne | `comm file1 file2` | Richiede file ordinati |
-| capire quali directory pesano di piÃ¹ | `du -xh /var --max-depth=1 \| sort -hr` | Prima scelta su filesystem pieno |
+| capire quali directory pesano di pià¹ | `du -xh /var --max-depth=1 \| sort -hr` | Prima scelta su filesystem pieno |
 | vedere lo spazio dei filesystem | `df -h` | Mostra spazio montato, non singole directory |
 | vedere dischi, partizioni e mountpoint | `lsblk -f` | Utile per storage/fstab |
 | cercare testo nei file | `rg -i "testo" .` | Migliore di `grep -R` per appunti e repo |
@@ -103,7 +103,7 @@ Questa è la sezione da usare quando non ricordi il comando ma ricordi cosa devi
 |---|---|---|
 | enumerare directory web con ffuf | `ffuf -w wordlist.txt:FUZZ -u http://TARGET/FUZZ` | Fuzzing directory |
 | cercare estensioni web | `ffuf -w web-extensions.txt:FUZZ -u http://TARGET/indexFUZZ` | Esempio: `.php`, `.html`, `.aspx` |
-| fuzzing ricorsivo controllato | `ffuf -w wordlist.txt:FUZZ -u http://TARGET/FUZZ -recursion -recursion-depth 1 -e .php -v` | Limitare sempre profonditÃ  |
+| fuzzing ricorsivo controllato | `ffuf -w wordlist.txt:FUZZ -u http://TARGET/FUZZ -recursion -recursion-depth 1 -e .php -v` | Limitare sempre profondità  |
 | enumerare sottodomini HTTP | `ffuf -w subdomains.txt:FUZZ -u https://FUZZ.example.com/` | Utile per vhost/subdomain |
 | enumerare directory con gobuster | `gobuster dir -e -u http://TARGET -w wordlist.txt -x html,php,txt` | Alternativa a ffuf |
 | enumerare directory con dirb | `dirb http://TARGET wordlist.txt -X .html,.php` | Classico su Kali |
@@ -150,7 +150,7 @@ Questa sezione è volutamente compatta: un solo blocco per argomento, con comand
 | `jobs` | mostra i job della shell | utile dopo `CTRL+Z` o `&` |
 | `fg %1` | riporta il job 1 in foreground | `%1` è l'ID del job |
 | `bg %1` | riprende il job 1 in background | utile per job sospesi |
-| `ps -fC nome_processo` | cerca un processo per nome | piÃ¹ pulito di `ps aux \| grep` |
+| `ps -fC nome_processo` | cerca un processo per nome | pià¹ pulito di `ps aux \| grep` |
 | `watch -n 5 comando` | riesegue un comando ogni 5 secondi | senza `-n`, default 2 secondi |
 | `alias ll='ls -lah'` | crea un alias | persistente solo se salvato nel profilo shell |
 | `unalias ll` | rimuove un alias | vale per la sessione corrente |
@@ -168,7 +168,7 @@ Questa sezione è volutamente compatta: un solo blocco per argomento, con comand
 | rinominare `.jpeg` in `.jpg` | `zmv '(*).jpeg' '$1.jpg'` | richiede modulo `zmv` |
 | spostare `*-backup.*` in `backup/` | `zmv '(*)-backup.(*)' 'backup/$1.$2'` | rinomina massiva |
 
-**Nota:** `zmv` puÃ² essere distruttivo se usato male. Prima di lanciare rinomine massive, prova con pochi file o usa opzioni di dry-run se disponibili.
+**Nota:** `zmv` puà² essere distruttivo se usato male. Prima di lanciare rinomine massive, prova con pochi file o usa opzioni di dry-run se disponibili.
 
 **Tag ricerca:** `zsh`, `globbing`, `zmv`, `rename`, `symlink`, `link interrotti`.
 
@@ -187,7 +187,7 @@ Questa sezione è volutamente compatta: un solo blocco per argomento, con comand
 | mostrare numero riga | `rg -n "dig"` | comodo per file lunghi |
 | cercare solo nei Markdown | `rg "dns" -g "*.md"` | limita il rumore |
 | escludere directory | `rg "password" -g '!node_modules' -g '!venv'` | utile in repo/progetti |
-| cercare piÃ¹ concetti | `rg -i "ptr\|reverse lookup\|record inverso"` | usa regex |
+| cercare pià¹ concetti | `rg -i "ptr\|reverse lookup\|record inverso"` | usa regex |
 | cercare stringa letterale | `rg -F "bash -i >& /dev/tcp"` | evita interpretazione regex |
 | cercare da PowerShell senza rg | `Get-ChildItem -Recurse -Include *.md,*.txt \| Select-String -Pattern "PTR","reverse lookup"` | fallback Windows |
 
@@ -224,7 +224,7 @@ winget install BurntSushi.ripgrep.MSVC
 | LVM volume groups | `vgs` | ambiente LVM |
 | LVM logical volumes | `lvs` | ambiente LVM |
 
-**Nota:** `lsblk` mostra struttura dei device; `df -h` mostra spazio dei filesystem montati; `du` mostra peso reale di file/directory. Se i numeri non tornano, spesso c'è un file cancellato ma ancora aperto da un processo. Linux non butta niente: lo tiene in ostaggio finchÃ© il processo non molla la presa.
+**Nota:** `lsblk` mostra struttura dei device; `df -h` mostra spazio dei filesystem montati; `du` mostra peso reale di file/directory. Se i numeri non tornano, spesso c'è un file cancellato ma ancora aperto da un processo. Linux non butta niente: lo tiene in ostaggio finchà© il processo non molla la presa.
 
 **Tag ricerca:** `du`, `df`, `lsblk`, `spazio disco`, `filesystem pieno`, `directory pesanti`, `lsof`, `lvm`, `uuid`, `fstab`.
 
@@ -247,7 +247,7 @@ winget install BurntSushi.ripgrep.MSVC
 | server TCP minimale | `socat TCP4-LISTEN:4444 STDOUT` | stampa su STDOUT |
 | port forwarder TCP | `socat TCP4-LISTEN:8080,fork TCP4:server_remoto:80` | inoltra traffico locale â†’ remoto |
 
-## Opzioni ss piÃ¹ usate
+## Opzioni ss pià¹ usate
 
 | Opzione | Significato |
 |---|---|
@@ -258,7 +258,7 @@ winget install BurntSushi.ripgrep.MSVC
 | `-n` | non risolve nomi/porte |
 | `-a` | tutte le socket |
 
-**Nota su `nc -e`:** alcune versioni lo supportano, altre no. Dove presente, collega STDIN/STDOUT di un programma alla connessione. Ãˆ una lama senza manico: utile in laboratorio, pessima idea in produzione.
+**Nota su `nc -e`:** alcune versioni lo supportano, altre no. Dove presente, collega STDIN/STDOUT di un programma alla connessione. àˆ una lama senza manico: utile in laboratorio, pessima idea in produzione.
 
 **Tag ricerca:** `ss`, `netstat`, `nc`, `netcat`, `socat`, `porte`, `socket`, `listener`, `port forward`.
 
@@ -272,7 +272,7 @@ winget install BurntSushi.ripgrep.MSVC
 |---|---|---|
 | `A` | hostname â†’ IPv4 | risoluzione base IPv4 |
 | `AAAA` | hostname â†’ IPv6 | risoluzione base IPv6 |
-| `NS` | name server autorevoli | delega/autoritÃ  zona |
+| `NS` | name server autorevoli | delega/autorità  zona |
 | `MX` | mail exchanger | server di posta del dominio |
 | `PTR` | IP â†’ hostname | reverse DNS lookup |
 | `CNAME` | alias verso altro nome DNS | alias DNS |
@@ -300,7 +300,7 @@ winget install BurntSushi.ripgrep.MSVC
 
 ## Concetto rapido
 
-BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare informazioni di rete a un host durante l'avvio. Ãˆ il predecessore concettuale di DHCP: DHCP aggiunge lease, rinnovo automatico, assegnazione dinamica e piÃ¹ opzioni.
+BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare informazioni di rete a un host durante l'avvio. àˆ il predecessore concettuale di DHCP: DHCP aggiunge lease, rinnovo automatico, assegnazione dinamica e pià¹ opzioni.
 
 ## Porte e debug
 
@@ -309,7 +309,7 @@ BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare info
 | porta server BOOTP/DHCP | `UDP 67` | server side |
 | porta client BOOTP/DHCP | `UDP 68` | client side |
 | sniffare traffico DHCP/BOOTP | `tcpdump -ni eth0 'udp port 67 or udp port 68'` | debug discovery/request/offer |
-| filtro tcpdump BOOTP | `tcpdump -ni eth0 -vvv 'bootp'` | output piÃ¹ verboso |
+| filtro tcpdump BOOTP | `tcpdump -ni eth0 -vvv 'bootp'` | output pià¹ verboso |
 
 ## Differenza BOOTP / DHCP
 
@@ -318,7 +318,7 @@ BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare info
 | assegnazione IP | tipicamente statica | dinamica o statica |
 | lease | non previsto come in DHCP | previsto |
 | uso moderno | legacy/appliance/casi particolari | standard attuale |
-| flessibilitÃ  | bassa | alta |
+| flessibilità  | bassa | alta |
 | ambito tipico | boot remoto | configurazione IP generale |
 
 **Tag ricerca:** `bootp`, `dhcp`, `pxe`, `boot`, `udp 67`, `udp 68`, `network boot`.
@@ -345,7 +345,7 @@ BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare info
 
 ## FFUF
 
-`ffuf` usa la parola chiave `FUZZ` come punto di sostituzione della wordlist. Se stai cercando velocitÃ  di consultazione, questa tabella basta nel 90% dei casi.
+`ffuf` usa la parola chiave `FUZZ` come punto di sostituzione della wordlist. Se stai cercando velocità  di consultazione, questa tabella basta nel 90% dei casi.
 
 | Obiettivo | Comando | Note |
 |---|---|---|
@@ -353,7 +353,7 @@ BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare info
 | directory fuzzing con porta | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://TARGET:PORT/FUZZ` | target con porta non standard |
 | trovare estensione web | `ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://TARGET/blog/indexFUZZ` | cerca `.php`, `.html`, `.aspx`, ecc. |
 | fuzzing file dopo estensione | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://TARGET/blog/FUZZ.php` | esempio con PHP |
-| recursive fuzzing | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://TARGET/FUZZ -recursion -recursion-depth 1 -e .php -v` | limitare profonditÃ  |
+| recursive fuzzing | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://TARGET/FUZZ -recursion -recursion-depth 1 -e .php -v` | limitare profondità  |
 | subdomain fuzzing | `ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://FUZZ.example.com/` | enum subdomain/vhost |
 | match status code | `ffuf -w wordlist.txt:FUZZ -u http://TARGET/FUZZ -mc 200,204,301,302,307,401,403` | filtra risposte interessanti |
 | escludere size risposta | `ffuf -w wordlist.txt:FUZZ -u http://TARGET/FUZZ -fs 1234` | elimina falso positivo ricorrente |
@@ -366,7 +366,7 @@ BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare info
 | `-w file:FUZZ` | wordlist associata alla keyword |
 | `-u URL/FUZZ` | punto da fuzzare |
 | `-recursion` | abilita ricorsione |
-| `-recursion-depth N` | limita profonditÃ  |
+| `-recursion-depth N` | limita profondità  |
 | `-e .php,.txt` | aggiunge estensioni |
 | `-v` | mostra URL completo |
 | `-mc` | match HTTP status code |
@@ -498,7 +498,7 @@ Samba è un'implementazione open source dei protocolli SMB/CIFS usati da Windows
 
 # 13 - Password attack tools autorizzati
 
-Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare perchÃ© serve ricordare rapidamente opzioni e moduli.
+Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare perchà© serve ricordare rapidamente opzioni e moduli.
 
 ## Hydra e Medusa
 
@@ -551,7 +551,7 @@ Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare pe
 | impostare target | `wmap_targets -t URL` | target URL |
 | elencare moduli | `wmap_run -t` | moduli abilitati |
 | eseguire scansione | `wmap_run -e` | scansione |
-| report vulnerabilitÃ  | `wmap_vulns -l` | risultati |
+| report vulnerabilità  | `wmap_vulns -l` | risultati |
 
 **Tag ricerca:** `metasploit`, `msfconsole`, `msfdb`, `db_nmap`, `hosts`, `services`, `check`, `show targets`, `wmap`.
 
@@ -573,7 +573,7 @@ Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare pe
 
 ## Concetto rapido
 
-ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far associare il MAC dell'attaccante all'IP di un altro host, tipicamente gateway o vittima. Da usare solo in laboratorio o attivitÃ  autorizzate.
+ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far associare il MAC dell'attaccante all'IP di un altro host, tipicamente gateway o vittima. Da usare solo in laboratorio o attività  autorizzate.
 
 ## Comandi e parametri
 
@@ -583,7 +583,7 @@ ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far
 | ARP spoofing | `arpspoof -i <interfaccia> -t <target> [-r] <host>` | lab/autorizzato |
 | sniffing passivo | `tcpdump -ni interfaccia` | alternativa CLI a Wireshark |
 | redirect HTTP | `iptables -t nat -A PREROUTING -s 192.168.56.0/24 -p tcp --dport 80 -j REDIRECT --to-ports 10080` | lab |
-| redirect HTTPS | `iptables -t nat -A PREROUTING -s 192.168.56.0/24 -p tcp --dport 443 -j REDIRECT --to-ports 10443` | TLS rende tutto piÃ¹ complesso |
+| redirect HTTPS | `iptables -t nat -A PREROUTING -s 192.168.56.0/24 -p tcp --dport 443 -j REDIRECT --to-ports 10443` | TLS rende tutto pià¹ complesso |
 
 ## Parametri arpspoof
 
@@ -615,7 +615,7 @@ ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far
 | creare venv Linux | `python3 -m venv .venv` | ambiente isolato |
 | attivare venv Linux | `source .venv/bin/activate` | shell corrente |
 | creare venv Windows | `python -m venv .venv` | PowerShell/CMD |
-| attivare venv PowerShell | `.\.venv\Scripts\Activate.ps1` | puÃ² richiedere ExecutionPolicy adeguata |
+| attivare venv PowerShell | `.\.venv\Scripts\Activate.ps1` | puà² richiedere ExecutionPolicy adeguata |
 
 ## Errori tipici pip
 
@@ -637,7 +637,7 @@ ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far
 | entrare nella directory | `cd recon-ng` | directory progetto |
 | installare dipendenze | `python3 -m pip install -r REQUIREMENTS` | usa venv se possibile |
 
-**Nota:** Recon-ng è un framework di ricognizione. La sua utilitÃ  dipende molto dai moduli configurati e dalle API key disponibili.
+**Nota:** Recon-ng è un framework di ricognizione. La sua utilità  dipende molto dai moduli configurati e dalle API key disponibili.
 
 **Tag ricerca:** `recon-ng`, `osint`, `recon`, `requirements`, `pip`.
 
