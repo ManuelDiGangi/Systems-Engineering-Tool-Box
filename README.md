@@ -2,7 +2,7 @@
 
 > Documento master per consultazione rapida. Usa `CTRL+F` cercando il comando (`dig`, `ss`, `ffuf`) oppure l'esigenza operativa (`record inverso`, `porte in ascolto`, `directory web`, `filesystem pieno`).
 
-**Scope:** usare le sezioni offensive solo in laboratorio, CTF, ambienti propri o attivitÃ  autorizzate. La toolbox Ã¨ pensata per amministrazione, troubleshooting, hardening e test di sicurezza autorizzati.
+**Scope:** usare le sezioni offensive solo in laboratorio, CTF, ambienti propri o attivitÃ  autorizzate. La toolbox è pensata per amministrazione, troubleshooting, hardening e test di sicurezza autorizzati.
 
 ---
 
@@ -35,7 +35,7 @@ Tag ricerca
 
 # 01 - Cookbook operativo: devo fare X
 
-Questa Ã¨ la sezione da usare quando non ricordi il comando ma ricordi cosa devi ottenere.
+Questa è la sezione da usare quando non ricordi il comando ma ricordi cosa devi ottenere.
 
 ## Linux / processi / shell
 
@@ -43,7 +43,7 @@ Questa Ã¨ la sezione da usare quando non ricordi il comando ma ricordi cosa de
 |---|---|---|
 | mandare un comando in background | `comando &` | Resta agganciato alla shell corrente |
 | vedere i job della shell | `jobs` | Mostra job sospesi/background |
-| riportare un job in foreground | `fg %1` | `%1` Ã¨ il numero del job |
+| riportare un job in foreground | `fg %1` | `%1` è il numero del job |
 | riprendere un job in background | `bg %1` | Utile dopo `CTRL+Z` |
 | cercare un processo per nome | `ps -fC nome_processo` | Alternativa pulita a `ps aux \| grep` |
 | rieseguire un comando ogni N secondi | `watch -n 5 comando` | Default: 2 secondi |
@@ -140,7 +140,7 @@ Questa Ã¨ la sezione da usare quando non ricordi il comando ma ricordi cosa de
 
 # 02 - Linux base e shell
 
-Questa sezione Ã¨ volutamente compatta: un solo blocco per argomento, con comandi in tabella. Gli approfondimenti lunghi vanno nelle sezioni dedicate, non sotto ogni comando.
+Questa sezione è volutamente compatta: un solo blocco per argomento, con comandi in tabella. Gli approfondimenti lunghi vanno nelle sezioni dedicate, non sotto ogni comando.
 
 ## Job control, processi e alias
 
@@ -148,7 +148,7 @@ Questa sezione Ã¨ volutamente compatta: un solo blocco per argomento, con coma
 |---|---|---|
 | `comando &` | esegue un comando in background | resta legato alla shell corrente |
 | `jobs` | mostra i job della shell | utile dopo `CTRL+Z` o `&` |
-| `fg %1` | riporta il job 1 in foreground | `%1` Ã¨ l'ID del job |
+| `fg %1` | riporta il job 1 in foreground | `%1` è l'ID del job |
 | `bg %1` | riprende il job 1 in background | utile per job sospesi |
 | `ps -fC nome_processo` | cerca un processo per nome | piÃ¹ pulito di `ps aux \| grep` |
 | `watch -n 5 comando` | riesegue un comando ogni 5 secondi | senza `-n`, default 2 secondi |
@@ -182,7 +182,7 @@ Questa sezione Ã¨ volutamente compatta: un solo blocco per argomento, con coma
 |---|---|---|
 | confrontare due file | `diff file_1 file_2` | mostra differenze riga per riga |
 | confrontare file ordinati su 3 colonne | `comm file_1 file_2` | colonne: solo file1, solo file2, comuni |
-| cercare testo nella directory corrente | `rg "PTR"` | ripgrep Ã¨ rapido e leggibile |
+| cercare testo nella directory corrente | `rg "PTR"` | ripgrep è rapido e leggibile |
 | cercare ignorando maiuscole/minuscole | `rg -i "porta tcp"` | utile per appunti non uniformi |
 | mostrare numero riga | `rg -n "dig"` | comodo per file lunghi |
 | cercare solo nei Markdown | `rg "dns" -g "*.md"` | limita il rumore |
@@ -224,7 +224,7 @@ winget install BurntSushi.ripgrep.MSVC
 | LVM volume groups | `vgs` | ambiente LVM |
 | LVM logical volumes | `lvs` | ambiente LVM |
 
-**Nota:** `lsblk` mostra struttura dei device; `df -h` mostra spazio dei filesystem montati; `du` mostra peso reale di file/directory. Se i numeri non tornano, spesso c'Ã¨ un file cancellato ma ancora aperto da un processo. Linux non butta niente: lo tiene in ostaggio finchÃ© il processo non molla la presa.
+**Nota:** `lsblk` mostra struttura dei device; `df -h` mostra spazio dei filesystem montati; `du` mostra peso reale di file/directory. Se i numeri non tornano, spesso c'è un file cancellato ma ancora aperto da un processo. Linux non butta niente: lo tiene in ostaggio finchÃ© il processo non molla la presa.
 
 **Tag ricerca:** `du`, `df`, `lsblk`, `spazio disco`, `filesystem pieno`, `directory pesanti`, `lsof`, `lvm`, `uuid`, `fstab`.
 
@@ -300,7 +300,7 @@ winget install BurntSushi.ripgrep.MSVC
 
 ## Concetto rapido
 
-BOOTP, Bootstrapping Protocol, Ã¨ un protocollo storico usato per assegnare informazioni di rete a un host durante l'avvio. Ãˆ il predecessore concettuale di DHCP: DHCP aggiunge lease, rinnovo automatico, assegnazione dinamica e piÃ¹ opzioni.
+BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare informazioni di rete a un host durante l'avvio. Ãˆ il predecessore concettuale di DHCP: DHCP aggiunge lease, rinnovo automatico, assegnazione dinamica e piÃ¹ opzioni.
 
 ## Porte e debug
 
@@ -399,7 +399,7 @@ BOOTP, Bootstrapping Protocol, Ã¨ un protocollo storico usato per assegnare in
 
 ## Concetti rapidi
 
-Samba Ã¨ un'implementazione open source dei protocolli SMB/CIFS usati da Windows per condivisione file e stampanti. Permette a sistemi UNIX/Linux di agire come file server per client Windows e, se configurato, integrarsi con domini Active Directory.
+Samba è un'implementazione open source dei protocolli SMB/CIFS usati da Windows per condivisione file e stampanti. Permette a sistemi UNIX/Linux di agire come file server per client Windows e, se configurato, integrarsi con domini Active Directory.
 
 | Componente | Funzione |
 |---|---|
@@ -505,7 +505,7 @@ Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare pe
 | Obiettivo | Comando | Note |
 |---|---|---|
 | SSH utente singolo + password list | `hydra -l musa -P /home/kali/Downloads/password.lst ssh://172.16.4.16` | esempio lab |
-| HTTP POST form | `hydra -l fatima -P /home/kali/Downloads/password.lst 172.16.4.16 http-post-form "/path/al/form:username=^USER^&password=^PASS^:Login errata"` | il terzo campo Ã¨ il messaggio di fallimento |
+| HTTP POST form | `hydra -l fatima -P /home/kali/Downloads/password.lst 172.16.4.16 http-post-form "/path/al/form:username=^USER^&password=^PASS^:Login errata"` | il terzo campo è il messaggio di fallimento |
 | FTP con Medusa | `medusa -h 172.16.4.16 -u hassan -P /home/kali/Downloads/password.lst -M ftp` | modulo FTP |
 
 ## Opzioni Hydra
@@ -563,7 +563,7 @@ Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare pe
 |---|---|---|
 | cercare exploit per CVE | `searchsploit --cve CVE-YYYY-NNNN` | database Exploit-DB locale |
 | cercare file SUID | `find / -perm -u=s -type f 2>/dev/null` | audit/privesc autorizzata |
-| upload file con curl | `curl http://indirizzo/directory/nomefile.php --upload-file file_locale.php` | solo dove il metodo Ã¨ supportato/autorizzato |
+| upload file con curl | `curl http://indirizzo/directory/nomefile.php --upload-file file_locale.php` | solo dove il metodo è supportato/autorizzato |
 
 **Tag ricerca:** `searchsploit`, `exploit-db`, `cve`, `privilege escalation`, `suid`, `find`, `curl upload`.
 
@@ -637,7 +637,7 @@ ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far
 | entrare nella directory | `cd recon-ng` | directory progetto |
 | installare dipendenze | `python3 -m pip install -r REQUIREMENTS` | usa venv se possibile |
 
-**Nota:** Recon-ng Ã¨ un framework di ricognizione. La sua utilitÃ  dipende molto dai moduli configurati e dalle API key disponibili.
+**Nota:** Recon-ng è un framework di ricognizione. La sua utilitÃ  dipende molto dai moduli configurati e dalle API key disponibili.
 
 **Tag ricerca:** `recon-ng`, `osint`, `recon`, `requirements`, `pip`.
 
