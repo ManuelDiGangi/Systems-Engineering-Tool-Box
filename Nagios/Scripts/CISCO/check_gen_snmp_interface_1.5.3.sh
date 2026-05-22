@@ -562,6 +562,7 @@ json_body(){
 			appo_json="$appo_json{\"name\":\"MAC\",\"value\":\"$MAC\"}"
 			
 			if ! [ -z "$INTERFACE_IP" ]; then
+			INTERFACE_IP=$(echo "$INTERFACE_IP" | tr '\n' '_')	# Alcune interfacce presentano più IP separati da \n che manda in crash lo script
 			appo_json="$appo_json,{\"name\":\"IP\",\"value\":\"$INTERFACE_IP\"}"
 			fi
 			
