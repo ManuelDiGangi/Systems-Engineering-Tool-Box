@@ -88,7 +88,13 @@ NO_LABEL=false
 BASEDIR_ARGOMENTI=/usr/local/filemanager/GeneralChecks
 WORD_SIZE=
 
-
+snmpv3_username=""
+snmpv3_authproto=""
+snmpv3_authkey=""
+snmpv3_privproto=""
+snmpv3_privkey=""
+snmpv3_context=
+SNMP_VERSION="2c"
 
 #
 # FUNCTIONS
@@ -675,21 +681,6 @@ function list_include_item {
 #
 # Main
 #
-snmpv3_username="senti_user"
-snmpv3_authproto="SHA"
-snmpv3_authkey="Senti.Border22"
-snmpv3_privproto="DES"
-snmpv3_privkey="Senti.Border22"
-snmpv3_context=
-SNMP_VERSION="3"
-
-#snmpv3_username=""
-#snmpv3_authproto=""
-#snmpv3_authkey=""
-#snmpv3_privproto=""
-#snmpv3_privkey=""
-#snmpv3_context=
-#SNMP_VERSION="2c"
 
 # Verifica requisito strutturale
 if [ ! -d "${BASEDIR_ARGOMENTI}" ]; then
