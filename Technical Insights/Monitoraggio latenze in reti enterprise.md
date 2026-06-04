@@ -87,8 +87,10 @@ WAN tunnel latency/jitter/loss
 | -------------------------------- | --------------------------------- | --------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Interface utilization | Monitor trouput interfaccia apparato | | -N $HOSTNAME$ -H $HOSTADDRESS$ -D $SERVICEDESC$ -t 60 -C $ARG1$ | |
 | Neighbor list | Avere visione dei neighbor dell'apparato (solo CISCO) | | $HOSTADDRESS $comunity | |
-Per i check approfondire: https://github.com/jorgeluiztaioque/nagios-router-plugin/tree/master
 
+Per i check approfondire: https://github.com/jorgeluiztaioque/nagios-router-plugin/tree/master
+| check_bgp | Monitora le sessioni BGP, cioè il protocollo usato per sacmbiare rotte tra AS o grandi domini di rete | Router Aziendale ---- BGP ---- Provider MPLS/Internet |
+| check_isis | Monitora le adiacenze IS-IS, un protocollo di routing interno, simile come ruolo a OSPF. Viene usato spesso in reti provider, backbone grandi, reti MPLS o infrastrutture molto strutturate. 
 ## 4. NetFlow
 
 Per capire chi sta consumando banda e che tipo di traffico attraversa la rete. Non mi sura direttamente la latenza, ma aiuta a capire se la latenza è causata da saturazione.
