@@ -89,7 +89,8 @@ WAN tunnel latency/jitter/loss
 | Neighbor list | Avere visione dei neighbor dell'apparato (solo CISCO) | | $HOSTADDRESS $comunity | |
 
 Per i check approfondire: https://github.com/jorgeluiztaioque/nagios-router-plugin/tree/master
-|---|---|---|
+| check | Descrizione | Esempio |
+| --- | --- | --- |
 | check_bgp | Monitora le sessioni BGP, cioè il protocollo usato per sacmbiare rotte tra AS o grandi domini di rete | Router Aziendale ---- BGP ---- Provider MPLS/Internet |
 | check_isis | Monitora le adiacenze IS-IS, un protocollo di routing interno, simile come ruolo a OSPF. Viene usato spesso in reti provider, backbone grandi, reti MPLS o infrastrutture molto strutturate. | Core Router A ---- IS-IS ---- Core Router B |
 | check_ospf | Monitora i neighbor OSPF, cioè le adiacenze tra router che usano OSPF. OSPF è un protocollo di routing interno molto comune nelle reti enterprise. | Router Sede Roma ---- OSPF ---- Router Datacenter Milano |
