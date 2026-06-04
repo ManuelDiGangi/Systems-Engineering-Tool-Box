@@ -21,12 +21,12 @@ DNS response time
 HTTP/S response time
 traceroute/path change
 ```
-| Punto                            | Obiettivo                         | Comando shell                       | Check Nagios/SentiNet equivalente                                                       | Cosa misura                                                                                     |
-| -------------------------------- | --------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Probe ICMP tra sedi          | Ping con statistiche base         | `ping -c 20 10.10.10.1`             | `check_ping -H 10.10.10.1 -w 100,5% -c 200,15%`                                         | Latenza min/avg/max e packet loss                                                               |
-| TCP verso servizio           | Test su porta reale               | `nc -vz -w 3 app.example.com 443`   | `check_tcp -H app.example.com -p 443 -w 0.2 -c 0.5`                                     | Tempo/riuscita connessione TCP                                                                  |
-| DNS latency                  | Tempo risposta DNS                | `dig @10.10.10.53 www.example.com +stats` | `check_dns -H www.example.com -s 10.10.10.53 -w 1 -c 3`                                 | Tempo risposta DNS                                                                              |
-| Path monitoring              | Analisi path + loss hop-by-hop    | `mtr -rwzc 100 10.10.10.1` | Plugin custom basato su `mtr`/`traceroute`                                              | Latenza e packet loss per hop                                                                   |
+| Punto                            | Obiettivo                         | Comando shell                       | Check Nagios/SentiNet equivalente                                                       | Cosa misura     |
+| -------------------------------- | --------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
+| Probe ICMP tra sedi          | Ping con statistiche base         | `ping -c 20 10.10.10.1`             | `check_ping -H 10.10.10.1 -w 100,5% -c 200,15%`                                         | Latenza min/avg/max e packet loss   |
+| TCP verso servizio           | Test su porta reale               | `nc -vz -w 3 app.example.com 443`   | `check_tcp -H app.example.com -p 443 -w 0.2 -c 0.5`                                     | Tempo/riuscita connessione TCP |
+| DNS latency                  | Tempo risposta DNS                | `dig @10.10.10.53 www.example.com +stats` | `check_dns -H www.example.com -s 10.10.10.53 -w 1 -c 3`                                 | Tempo risposta DNS   |
+| Path monitoring              | Analisi path + loss hop-by-hop    | `mtr -rwzc 100 10.10.10.1` | Plugin custom basato su `mtr`/`traceroute`                                              | Latenza e packet loss per hop  |
 
 ---
 
@@ -83,29 +83,28 @@ BGP session reset
 SD-WAN path switch
 WAN tunnel latency/jitter/loss
 ```
-| Punto                            | Obiettivo                         | Comando shell               | Check Nagios/SentiNet equivalente                                                       | Cosa misura                                                                                     |
+| Punto                            | Obiettivo                         | Comando shell               | Check Nagios/SentiNet equivalente         | Cosa misura                                                                                     |
 | -------------------------------- | --------------------------------- | --------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| | | | |
-| Neighbor list | Avere visione dei neighbor dell'apparato (solo CISCO) | | |
+| Interface utilization | Monitor trouput interfaccia apparato | | -N $HOSTNAME$ -H $HOSTADDRESS$ -D $SERVICEDESC$ -t 60 -C $ARG1$ | |
+| Neighbor list | Avere visione dei neighbor dell'apparato (solo CISCO) | | $HOSTADDRESS $comunity | |
 Per i check approfondire: https://github.com/jorgeluiztaioque/nagios-router-plugin/tree/master
-| Punto | Obiettivo | Comando/Check | Note |
-|---|---|---|
-| Probe ICMP | `ping -c 20 <ip>` | Latenza min/avg/max e  |
 
-**Tag ricerca:** `tag1`, `tag2`, `tag3`.
+## 4. NetFlow
 
-## Template approfondimento
+Per capire chi sta consumando banda e che tipo di traffico attraversa la rete. Non mi sura direttamente la latenza, ma aiuta a capire se la latenza è causata da saturazione.
 
+COn NetFlow/IPFIX/sFlow è possibile vedere:
 ```markdown
-## Nome argomento
-
-Descrizione breve e concreta.
-
-| Aspetto | Dettaglio |
-|---|---|
-| porta/protocollo | valore |
-| file/config | path |
-| comando utile | `comando` |
+top talker
+top destination
+top protocol
+top port
+traffico per sede
+traffico per applicazione
+traffico anomalo
+sessioni verso cloud/SaaS
+picchi improvvisi
+```
 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
