@@ -90,7 +90,13 @@ WAN tunnel latency/jitter/loss
 
 Per i check approfondire: https://github.com/jorgeluiztaioque/nagios-router-plugin/tree/master
 | check_bgp | Monitora le sessioni BGP, cioè il protocollo usato per sacmbiare rotte tra AS o grandi domini di rete | Router Aziendale ---- BGP ---- Provider MPLS/Internet |
-| check_isis | Monitora le adiacenze IS-IS, un protocollo di routing interno, simile come ruolo a OSPF. Viene usato spesso in reti provider, backbone grandi, reti MPLS o infrastrutture molto strutturate. 
+| check_isis | Monitora le adiacenze IS-IS, un protocollo di routing interno, simile come ruolo a OSPF. Viene usato spesso in reti provider, backbone grandi, reti MPLS o infrastrutture molto strutturate. | Core Router A ---- IS-IS ---- Core Router B |
+| check_ospf | Monitora i neighbor OSPF, cioè le adiacenze tra router che usano OSPF. OSPF è un protocollo di routing interno molto comune nelle reti enterprise. | Router Sede Roma ---- OSPF ---- Router Datacenter Milano |
+| check_pim | Monitora i neighbor PIM, cioè Protocol Independent Multicast. PIM serve per instradare traffico multicast tra router. Multicast significa: un mittente invia un flusso e più destinatari lo ricevono senza creare una sessione separata per ognuno. | IPTV, stream video enterprise, ipcam ... |
+|check_msdp|Monitora sessioni MSDP, cioè Multicast Source Discovery Protocol. MSDP serve a far conoscere sorgenti multicast tra domini PIM diversi, soprattutto in architetture con PIM Sparse Mode e più RP, cioè Rendezvous Point. PIM gestisce il multicast, MSDP aiuta domini multicast diversi a sapere dove sono le sorgenti. | Dominio Multicast A ---- MSDP ---- Dominio Multicast B |
+
+---
+
 ## 4. NetFlow
 
 Per capire chi sta consumando banda e che tipo di traffico attraversa la rete. Non mi sura direttamente la latenza, ma aiuta a capire se la latenza è causata da saturazione.
@@ -108,8 +114,43 @@ sessioni verso cloud/SaaS
 picchi improvvisi
 ```
 
+---
+
+## 5. Jitter e packet loss 
+
+Per capire il variriare della latenza nel tempo e la perdita di pacchetti durante le comunicazioni.
+jitter = media delle differenze tra una latenza e quella successiva
+```markdown
+latenze: 30 ms, 35 ms, 32 ms, 50 ms
+differenze: 5 ms, 3 ms, 18 ms
+jitter medio ≈ 8,6 ms
+```
+
+Devi monitorare:
+```markdown
+latency min/avg/max
+jitter
+packet loss
+out-of-order packets
+retransmission TCP
+round trip time applicativo
+```
+
+---
+
+## 6. Tracerout e path monitoring
+
+All'intenro di reti grandi/geografiche è utile monitorare anche i percorsi
+Strumenti tipici:
+```markdown
+traceroute target
+mtr target
+tcptraceroute target ip/url 443
+```
+
+---
+
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
-```
 
 ---
