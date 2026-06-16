@@ -634,12 +634,29 @@ ARP spoofing/ARP poisoning consiste nell'inviare risposte ARP manipolate per far
 | Obiettivo | Comando | Note |
 |---|---|---|
 | clonare repository | `git clone https://github.com/lanmaster53/recon-ng.git` | sorgente GitHub |
-| entrare nella directory | `cd recon-ng` | directory progetto |
 | installare dipendenze | `python3 -m pip install -r REQUIREMENTS` | usa venv se possibile |
+| avvio del fotware | `./recon-ng` | è uno script basato su Python |
+| aera di lavoro | `workspaces <create|list|load|remove> [...]` | è possibile creare diverse aree di lavoro |
+| moduli | `modules <load|reload|search> <nome modulo>` | permette di gestire i moduli |
+| marketplace plugin | `marketplace <search|install> [nome modulo]` | |
+| utilizzo modulo | `modules load <nome modulo>` | successivamente necessita configurazione/run |
+| info/configurazione | `info - options set <nome-opzione> [valore]` | simile a msconsole |
+| gestione chiavi | `key [nome_modulo] <list/add/remove> [chiave]` | per le chiavi delle API |
+
+## Moduli utili
+
+| Modulo | Caso d'uso | 
+|---|---|
+| `whois_pocs` | ricava informazioni riguardo gli utenti di un dominio, popola la tabella contacts|
+| `fullcontact` | per i contatti di cui sopra, ne ricava i profili social |
+| `bing_domain_web` | ricava host partendo dai domini web, popola la tabella hosts |
+| `resolve` | risolve i nomi della tabella hosts |
+| `shodan_ip` | partendo dagli ip/nomi trova eventuali porte esposte, necessita di chiave |
+| `reporting/...` | ci sono svariati moduli di reportistica per l'esportazione dei dati |
 
 **Nota:** Recon-ng è un framework di ricognizione. La sua utilità  dipende molto dai moduli configurati e dalle API key disponibili.
 
-**Tag ricerca:** `recon-ng`, `osint`, `recon`, `requirements`, `pip`.
+**Tag ricerca:** `recon-ng`, `osint`, `recon`.
 
 ---
 
