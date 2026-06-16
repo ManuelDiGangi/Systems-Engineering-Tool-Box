@@ -37,15 +37,37 @@ Molti vendor offrono guide complete per applicare questo standard:
 - https://www.oracle.com/assets/security-pci-dss-wp-078843.pdf
 
 ### Laboratorio Nessus
-1. PCI-DSS Internal Scano
-Di default questa scansione non prende in esame applicazioni web hostate dalla macchine, è possibile abilitare tale opzinoe dalle impostazioni della scansione.
 
-` markdown
+Queste scansioni operano in locale, pertanto in fase di configurazione è fondamentale fornire le credenziali di accesso alle macchine nel tab credential. Se la macchina non è a dominio nel campo domain indicare il nome macchina.
+
+1. PCI-DSS Internal Scan
+Di default questa scansione non prende in esame applicazioni web hostate dalla macchine, è possibile abilitare tale opzinoe dalle impostazioni della scansione. L
+
+Defalut:
+``` markdown
 These settings are required to test cross-site scripting and SQL injection flaws:
 Web applications tests are disabled
 CGI scanning is disabled
 The timeout for web application tests is 0 seconds.
-`
+```
+Abilitare scanisone web app:
+Settings -> Assessment -> Web Applicaiton -> ON
+Application Test Settings ->
+- Enable generic application tests
+- Test embedded web servers
 
+``` markdown
+These settings are required to test cross-site scripting and SQL
+injection flaws:
+Web applications tests are enabled.
+CGI scanning is enabled.
+The timeout for web application tests is 300 seconds.
+```
+
+2. PCI-DSS External Scan
+L'audit fallisce per tre classi di elementi:
+- Rilevamento di qualsiasi vulnerabilità con un punteggio CVSS >=4
+- Rilevamento di vulnerabilità XSS o SQLi
+- Crittografia SSL non configurata o configurata in modo errato.
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
