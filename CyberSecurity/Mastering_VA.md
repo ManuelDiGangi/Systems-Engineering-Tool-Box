@@ -36,7 +36,17 @@ Molti vendor offrono guide complete per applicare questo standard:
 - https://docs.microsoft.com/it-it/security-updates/security/15480175#on-this-page
 - https://www.oracle.com/assets/security-pci-dss-wp-078843.pdf
 
+### Laboratorio Nessus
+1. PCI-DSS Internal Scano
+Di default questa scansione non prende in esame applicazioni web hostate dalla macchine, è possibile abilitare tale opzinoe dalle impostazioni della scansione.
 
+` markdown
+These settings are required to test cross-site scripting and SQL injection
+flaws:
+***Web applications tests are disabled
+CGI scanning is disabled***
+The timeout for web application tests is ***0 seconds.***
+`
 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
