@@ -69,5 +69,19 @@ L'audit fallisce per tre classi di elementi:
 - Rilevamento di qualsiasi vulnerabilità con un punteggio CVSS >=4
 - Rilevamento di vulnerabilità XSS o SQLi
 - Crittografia SSL non configurata o configurata in modo errato.
+
+3. Usare compliance audit
+Selezionando questa voce sarà possibile selezionare manualmente le base line per le quali effettuare l'adit.
+Utile nel caso in cui si presenti la necessità di essere compliant a più base line.
+
+## SCAP
+
+E' un metodo per l'utilizzo di standard specifici per consentire la gestione automatizzata delle vulnerabilità, la misurazione e la valutazione della conformità alle politiche dei sistemi implementati nell'organizzazione.
+
+In sostanza sono delle checklist che rendono standard il processo e consentono il collegamento automatica tra configurazioni di sicurezza dei sistemi ed il framework dei controlli della pubblciazione NIST 800-53. Offrono una versione standard delle nomenclature e dei formati utilizzabili da prodotti automatici.
+
+**Dove trovare le chesklist** - Il National Vulnerability Database (NVD) è la fonte per i contenuti SCAP, le check list sono scaricabili dal repository ufficale: https://ncp.nist.gov/repository
+
+**Lo scopo** 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
