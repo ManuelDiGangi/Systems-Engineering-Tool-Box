@@ -82,6 +82,10 @@ In sostanza sono delle checklist che rendono standard il processo e consentono i
 
 **Dove trovare le chesklist** - Il National Vulnerability Database (NVD) è la fonte per i contenuti SCAP, le check list sono scaricabili dal repository ufficale: https://ncp.nist.gov/repository
 
-**Lo scopo** 
+**Lo scopo** - Eseguire misurazioni iniziali ed il monitoraggio continuo delle impostazinoi di sicurezza e dei controlli corrispondenti alla SP 800-53
+
+###OpenScap
+E' una libreria e strumento a riga di comando utile ad analizzare e valutare ogni componente dello standard SCAP, agisce sul sistema locale eseguendo scansinoi di configurazione e vulnerabilità.
+
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
