@@ -43,9 +43,9 @@ Di default questa scansione non prende in esame applicazioni web hostate dalla m
 ` markdown
 These settings are required to test cross-site scripting and SQL injection
 flaws:
-***Web applications tests are disabled
-CGI scanning is disabled***
-The timeout for web application tests is ***0 seconds.***
+Web applications tests are disabled
+CGI scanning is disabled
+The timeout for web application tests is 0 seconds.
 `
 
 **Quando usarlo:** scenario operativo.
