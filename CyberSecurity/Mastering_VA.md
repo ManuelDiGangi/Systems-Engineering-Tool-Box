@@ -18,10 +18,16 @@ Lo standard si basa su 6 principi e 12 requisiti (i quali hanno sotto-requisiti)
 
 | Principio | Requisito |
 |---|---|
-| Creare e gestire una rete protetta | **Requisito 1: ** installare e gestire una configurazione firewall per proteggere i dati sui titolari di carta |
+| Creare e gestire una rete protetta | **Requisito 1:** installare e gestire una configurazione firewall per proteggere i dati sui titolari di carta |
 |  | **Requisito 2:** non utilizzare i valori predefiniti dal produttore per password del sistema e altri parametri di protezione. |
-| file/config | path |
-| comando utile | `comando` |
+| Proteggere i dati sui titolari di carta | **Requisito 3:** proteggere i dati sui titolari di carta presenti negli archivi |
+|   | **Requisito 4:** crittografare la trasmissione dei dati sui titolari di carta sulle reti pubbliche e aperte |
+| Adottare un programma di gestione delle vulnerabilità | **Requisito 5:** utilizzare e aggiornare regolarmente un software antivirus | 
+|  | **Requisito 6:** sviluppare e gestire sistemi e applicazioni sicuri |
+| ecc.. | ecc.. |
+
+### Gli obblighi
+Il requisito 11.2 afferma la necessità di "eseguire almeno trimestralmente scansioni di vulnerabilità delle reti interne ed esterne
 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
