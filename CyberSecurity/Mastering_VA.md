@@ -27,7 +27,16 @@ Lo standard si basa su 6 principi e 12 requisiti (i quali hanno sotto-requisiti)
 | ecc.. | ecc.. |
 
 ### Gli obblighi
-Il requisito 11.2 afferma la necessità di "eseguire almeno trimestralmente scansioni di vulnerabilità delle reti interne ed esterne
+Il requisito 11.2 afferma la necessità di "eseguire almeno trimestralmente scansioni di vulnerabilità delle reti interne ed esterne e dopo qualsiasi cambiamnto significativo"
+
+|Per una scansione interna|Si deve verificare che negli ultimi 12 mesi siano state eseguite il numero minimo di scansioni e chie siano state effettuate nuove scansioni fino alla risoluzione di tutte le vulnerabilita ad alto richio (Hight e Critical)|
+|Per una scasnione esterna | Deve essere eseguita da parte riconosciuta al PCI SSC|
+
+Molti vendor offrono guide complete per applicare questo standard:
+- https://docs.microsoft.com/it-it/security-updates/security/15480175#on-this-page
+- https://www.oracle.com/assets/security-pci-dss-wp-078843.pdf
+
+
 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
