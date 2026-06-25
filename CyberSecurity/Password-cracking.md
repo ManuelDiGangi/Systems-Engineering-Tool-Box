@@ -27,6 +27,7 @@
 ## Ncrack
 
 | Obiettivo | Comando | 
+|---|---|
 | comando base | `ncrack ip_target -p ssh:50,telnet` con il parametro -p è possibile indicare più protocolli da sondare |
 | comando base su intera net | `ncrack net_ip/cidr` |
 | Indicare utente e password da testare | `ncrack ip_target -p ssh:50 --user nome_utente1,nome_utente2 --pass password1,password2` |
@@ -37,6 +38,7 @@
 ### Ncrack e Nmap
 
 | Obiettivo | Comando | 
+|---|---|
 | scansione nmap con report .xml | `nmap -sV ip/cidr -oX rete.xml` |
 | armare ncrack con il report precedente | `ncrac -iX rete.xml -U user.txt -P pass.txt` |
 
