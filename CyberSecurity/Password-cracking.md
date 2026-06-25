@@ -25,6 +25,7 @@
 ---
 
 ## Ncrack
+
 | Obiettivo | Comando | Note |
 | comando base | `ncrack ip_target -p ssh:50,telnet` con il parametro -p è possibile indicare più protocolli da sondare |
 | comando base su intera net | `ncrack net_ip/cidr`|
@@ -34,6 +35,7 @@
 | Riprendere la ricerca da dove è stata interrotta. | `ls -ltr .ncrack/` ritorna l'elenco dei restore disponibili `ncrack --resume .ncrack/restore...`|
 
 ### Ncrack e Nmap
+
 | scansione nmap con report .xml | `nmap -sV ip/cidr -oX rete.xml`|
 | armare ncrack con il report precedente | `ncrac -iX rete.xml -U user.txt -P pass.txt` |
 
