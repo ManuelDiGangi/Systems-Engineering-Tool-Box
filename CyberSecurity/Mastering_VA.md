@@ -84,8 +84,27 @@ In sostanza sono delle checklist che rendono standard il processo e consentono i
 
 **Lo scopo** - Eseguire misurazioni iniziali ed il monitoraggio continuo delle impostazinoi di sicurezza e dei controlli corrispondenti alla SP 800-53
 
-###OpenScap
+### OpenScap
 E' una libreria e strumento a riga di comando utile ad analizzare e valutare ogni componente dello standard SCAP, agisce sul sistema locale eseguendo scansinoi di configurazione e vulnerabilità.
+
+## MSCT - Microsoft Security Compliance Toolkit
+Uno strumento Microsoft che consente di distribuire le policy tramite le GPO di AD. 
+E' possibile effettuare dei test di compliance tramite lo strumento 'compliance audit' di Nessus, selezionando nel menù compliance la voce MSCT relativa alla versione del sistema da testare.
+
+# Low Hanging Fruit
+Il nemico di una scansione è il tempo, ci sono "Frutti facili da raccolgiere" che i PenTester sottovalutano, ma vengono prefereiti dagli attaccanti perchè facilitano e velocizzano il loro lavoro.
+
+## NSE
+Nmap Script Engine (NSE) è uno degli strumenti chiave per effettuare delle ricerche accurate e mirate. Tali script sono classificati per categoria (vuln, exploit,...) e per livello di funzionalità (safe, intrusive, ...).
+
+Comandi rapidi per cominciare
+nmap -sV ip
+nmap --script-help "vuln and ftp*" ci permette di cercare script relativi a vulnerabilità ftp
+nmap -sV --script=nome_script ip_target
+
+nmap -sV -p80,443 ip_target
+nmap -sV ,p80,443 --script=http-sql-injection ip_target
+
 
 **Quando usarlo:** scenario operativo.
 **Tag ricerca:** `tag1`, `tag2`, `tag3`.
