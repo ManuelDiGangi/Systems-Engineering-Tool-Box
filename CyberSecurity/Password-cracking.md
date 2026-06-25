@@ -52,5 +52,24 @@ patator ssh_login \
 host=ip user=scott password=FILE0 0=pass.txt \
 -x ignore:mesg='Authentication failed.'
 ```
-
 FILE0 si riferisce al file passato da riga di comando con indice 0 (è possibile inserire più file con indice diverso)
+
+
+Web form
+```text
+patator http_fuzz method=POST url="http://...." \
+body="username=FILE0&password=FILE1&Login=Login" 0=user.txt 1=pass.txt \
+follow=1 accept_cookie=1 -x ignore:fgrep'Login failed'
+```
+Il body lo abbiamo ricavato facendo ispeziona elemento -> Network -> Request
+follow=1 abilita il follow del redirect
+-x ignore passa oltre se trova la stringa ...
+accept_cookie=1 accetta i cookie come valore di ritorno
+
+## Generazione di dizionari
+
+### RSMangler
+Prende un elenco di parole es esegue varie manipolazioni, similmente a come fa jhon the ripper (in real time)
+`rsmangler --file path -m 6 -x 8`
+
+-m indica il numero minimo, -x il massimo di caratteri di cui saranno composte le nuove password.
