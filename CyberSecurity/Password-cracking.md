@@ -45,7 +45,10 @@
 ---
 
 ## Patator
-Esempio credenziali ssh ```patator ssh_login \
+Esempio credenziali ssh 
+```text
+patator ssh_login \
 host=ip user=scott password=FILE0 0=pass.txt \
--x ignore:mesg='Authentication failsed.'```
+-x ignore:mesg='Authentication failsed.'
+```
 FILE0 si riferisce al file passato da riga di comando con indice 0 (è possibile inserire più file con indice diverso)
