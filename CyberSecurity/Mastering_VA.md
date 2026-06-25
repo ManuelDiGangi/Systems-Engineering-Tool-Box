@@ -94,6 +94,7 @@ E' possibile effettuare dei test di compliance tramite lo strumento 'compliance 
 # Low Hanging Fruit
 Il nemico di una scansione è il tempo, ci sono "Frutti facili da raccolgiere" che i PenTester sottovalutano, ma vengono prefereiti dagli attaccanti perchè facilitano e velocizzano il loro lavoro.
 
+
 ## NSE
 Nmap Script Engine (NSE) è uno degli strumenti chiave per effettuare delle ricerche accurate e mirate. Tali script sono classificati per categoria (vuln, exploit,...) e per livello di funzionalità (safe, intrusive, ...).
 
