@@ -523,6 +523,7 @@ Usare solo su sistemi autorizzati, lab o CTF. Qui ha senso la forma tabellare pe
 
 **Tag ricerca:** `hydra`, `medusa`, `password attack`, `bruteforce`, `ssh`, `ftp`, `http-post-form`.
 **Altre info:** [CyberSecurity/Password-cracking.md](https://github.com/ManuelDiGangi/Systems-Engineering-Tool-Box/blob/d7113cc28a9a12bd26f0a1d7225d1649fc2d4754/CyberSecurity/Password-cracking.md)
+
 ---
 
 # 14 - Metasploit
