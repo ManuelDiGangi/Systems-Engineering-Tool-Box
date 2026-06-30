@@ -296,32 +296,75 @@ winget install BurntSushi.ripgrep.MSVC
 
 ---
 
-# 07 - BOOTP, DHCP e boot di rete
+# 07 - Automazione con cron e crontab
 
-## Concetto rapido
+## Sintassi e gestione
 
-BOOTP, Bootstrapping Protocol, è un protocollo storico usato per assegnare informazioni di rete a un host durante l'avvio. àˆ il predecessore concettuale di DHCP: DHCP aggiunge lease, rinnovo automatico, assegnazione dinamica e pià¹ opzioni.
-
-## Porte e debug
-
-| Obiettivo | Comando / valore | Note |
+| Obiettivo | Comando / sintassi | Note |
 |---|---|---|
-| porta server BOOTP/DHCP | `UDP 67` | server side |
-| porta client BOOTP/DHCP | `UDP 68` | client side |
-| sniffare traffico DHCP/BOOTP | `tcpdump -ni eth0 'udp port 67 or udp port 68'` | debug discovery/request/offer |
-| filtro tcpdump BOOTP | `tcpdump -ni eth0 -vvv 'bootp'` | output pià¹ verboso |
+| modificare il crontab utente | `crontab -e` | apre il crontab dell'utente corrente |
+| visualizzare il crontab utente | `crontab -l` | non modifica nulla |
+| rimuovere il crontab utente | `crontab -r` | attenzione: elimina tutto senza editor |
+| modificare il crontab di un altro utente | `crontab -u utente -e` | richiede privilegi adeguati |
+| validare visivamente il crontab | `crontab -l` | utile dopo una modifica |
+| verificare il servizio cron | `systemctl status crond` | RHEL/CentOS/Fedora |
+| verificare il servizio cron | `systemctl status cron` | Debian/Ubuntu |
+| vedere i log cron | `journalctl -u crond` | RHEL/CentOS/Fedora |
+| vedere i log cron | `journalctl -u cron` | Debian/Ubuntu |
+| cercare eventi cron nei log classici | `grep CRON /var/log/cron` | tipico RHEL |
+| cercare eventi cron nei log classici | `grep CRON /var/log/syslog` | tipico Debian/Ubuntu |
 
-## Differenza BOOTP / DHCP
+## Formato della schedulazione
 
-| Aspetto | BOOTP | DHCP |
+```text
+MINUTO ORA GIORNO_MESE MESE GIORNO_SETTIMANA comando
+```
+
+| Campo | Valori | Esempio |
 |---|---|---|
-| assegnazione IP | tipicamente statica | dinamica o statica |
-| lease | non previsto come in DHCP | previsto |
-| uso moderno | legacy/appliance/casi particolari | standard attuale |
-| flessibilità  | bassa | alta |
-| ambito tipico | boot remoto | configurazione IP generale |
+| minuto | `0-59` | `*/5` ogni 5 minuti |
+| ora | `0-23` | `2` alle 02:00 |
+| giorno del mese | `1-31` | `1` il primo del mese |
+| mese | `1-12` o nomi | `1,6,12` gennaio, giugno, dicembre |
+| giorno settimana | `0-7` o nomi | `1-5` da lunedi a venerdi; `0` e `7` indicano domenica |
 
-**Tag ricerca:** `bootp`, `dhcp`, `pxe`, `boot`, `udp 67`, `udp 68`, `network boot`.
+### Crontab Personale (crontab -e):
+* * * * * /comando/da/eseguire
+  
+### Crontab di Sistema (/etc/crontab o file in /etc/cron.d/):
+* * * * * root /comando/da/eseguire
+
+## Esempi rapidi
+
+| Esigenza | Riga crontab | Note |
+|---|---|---|
+| ogni 5 minuti | `*/5 * * * * /path/script.sh` | usare path assoluti |
+| ogni giorno alle 02:30 | `30 2 * * * /path/script.sh` | esecuzione giornaliera |
+| dal lunedi al venerdi alle 07:00 | `0 7 * * 1-5 /path/script.sh` | giorni lavorativi |
+| ogni domenica alle 03:00 | `0 3 * * 0 /path/backup.sh` | manutenzione settimanale |
+| il primo giorno del mese | `0 4 1 * * /path/report.sh` | mensile |
+| ogni 15 minuti in fascia 08-18 | `*/15 8-18 * * * /path/check.sh` | include anche le 18:45 |
+| al riavvio del sistema | `@reboot /path/startup.sh` | eseguito dal demone cron |
+| inviare output in un log | `0 2 * * * /path/script.sh >> /var/log/script.log 2>&1` | unisce STDOUT e STDERR |
+| scartare tutto l'output | `0 2 * * * /path/script.sh >/dev/null 2>&1` | usare solo se i log non servono |
+| impedire esecuzioni sovrapposte | `*/5 * * * * /usr/bin/flock -n /run/script.lock /path/script.sh` | molto utile per job lunghi |
+| timeout massimo di 10 minuti | `*/5 * * * * /usr/bin/timeout 10m /path/script.sh` | termina job bloccati |
+| eseguire con shell Bash | `SHELL=/bin/bash` | dichiarazione in testa al crontab |
+| impostare il PATH | `PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin` | evita comandi non trovati |
+
+## Note operative importanti
+
+- Nei file `/etc/cron.d/*` e `/etc/crontab` esiste un campo aggiuntivo per l'utente:
+
+```text
+MINUTO ORA GIORNO_MESE MESE GIORNO_SETTIMANA UTENTE comando
+```
+
+- Il carattere `%` nel comando ha un significato speciale per cron e puo dover essere escapato come `\%`.
+- Una riga che funziona in shell puo fallire in cron per `PATH`, directory corrente, variabili d'ambiente o permessi.
+
+**Tag ricerca:** `cron`, `crontab`, `schedulazione`, `job`, `flock`, `timeout`, `CRON_TZ`, `RANDOM_DELAY`, `@reboot`, `automazione`.
+
 
 ---
 
