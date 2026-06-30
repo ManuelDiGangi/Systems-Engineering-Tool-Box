@@ -329,10 +329,14 @@ MINUTO ORA GIORNO_MESE MESE GIORNO_SETTIMANA comando
 | giorno settimana | `0-7` o nomi | `1-5` da lunedi a venerdi; `0` e `7` indicano domenica |
 
 ### Crontab Personale (crontab -e):
+```text
 * * * * * /comando/da/eseguire
+```
   
 ### Crontab di Sistema (/etc/crontab o file in /etc/cron.d/):
+```text
 * * * * * root /comando/da/eseguire
+```
 
 ## Esempi rapidi
 
