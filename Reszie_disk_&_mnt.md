@@ -1,7 +1,9 @@
  # AUMENTO DELLO SPAZIO DISCO
-Dopo aver aumentato lo spazio disco sul virtualizzatore (Vsphere, vmware ecc..)
+Operazioni da effettuare dopo aver aumentato lo spazio disco sul virtualizzatore (Vsphere, vmware ecc..)
+
 Tutti i comandi vanno eseguiti con sudo
-aggiorna la tabella degli spazi di memoria
+
+Aggiorna la tabella degli spazi di memoria
 
 ```
 parted /dev/sda -> fix		
