@@ -2,33 +2,43 @@
 Operazioni da effettuare dopo aver aumentato lo spazio disco sul virtualizzatore (Vsphere, vmware ecc..)
 
 Tutti i comandi vanno eseguiti con sudo
-
-Aggiorna la tabella degli spazi di memoria
+---
+### Aggiorna la tabella degli spazi di memoria
 
 ```
 parted /dev/sda -> fix		
 ```
-		 Visualizzare il layout della partizione, serve a verificare la dimensione del disco ed il settore finale
-	print	
-		Es. output
+
+### Visualizzare il layout della partizione, serve a verificare la dimensione del disco ed il settore finale
+```
+print
+```
+
+Es. output
 	number	start	end	size	filesystem	name
 	1										sda 1
 	2										sda 2
 	3										sda 3
 
-		 Estensione del disco
-		 Il comando sposta il settore finale, in questo caso gli diamo il 100% dello spazio aggiunto
-	resizepart <numero della partizione presa dalla tabella sopra> 100%	
+### Estensione del disco
+Il comando sposta il settore finale, in questo caso gli diamo il 100% dello spazio aggiunto
+```
+resizepart <numero della partizione presa dalla tabella sopra> 100%	
+```
+### Usciamo dallo strumento parted
+```
+quit
+```
 	
-		 Usciamo dallo strumento parted
-	quit
-	
-	 Aggiornare il Phisical Volume lvm e rendere lo spazio visibile al Volume Group
+### Aggiornare il Phisical Volume lvm e rendere lo spazio visibile al Volume Group
+```
 pvresize /dev/sda
+```
 
-	 Assegnare gli extents liberi nel Volume Group al Logical Volume
-	 Il comando varia in base alla versione di Rhel
-	 N.B. per verificare il nome della partizione utilizzare il comando lsblk
+### Assegnare gli extents liberi nel Volume Group al Logical Volume
+Il comando varia in base alla versione di Rhel
+
+N.B. per verificare il nome della partizione utilizzare il comando lsblk
 	
 	!! 
 		Se lo spazio va assegnato ad un nuovo mount (Es. /opt) passare alla seconda parte del file -> lvcreate -l 100%FREE -n <nome mnt> rhel
