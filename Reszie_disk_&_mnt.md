@@ -40,10 +40,8 @@ Il comando varia in base alla versione di Rhel
 
 N.B. per verificare il nome della partizione utilizzare il comando lsblk
 	
-	!! 
-		Se lo spazio va assegnato ad un nuovo mount (Es. /opt) passare alla seconda parte del file -> lvcreate -l 100%FREE -n <nome mnt> rhel
-			Es. lvcreate -l 100%FREE -n opt rhel
-	!!
+** Se lo spazio va assegnato ad un nuovo mount (Es. /opt) passare alla seconda parte del file -> lvcreate -l 100%FREE -n <nome mnt> rhel
+   Es. lvcreate -l 100%FREE -n opt rhel**
 	
  Comando 1
 lvextend -l +100%FREE /dev/mapper/<partizione da espandere Es. rhel-root>
