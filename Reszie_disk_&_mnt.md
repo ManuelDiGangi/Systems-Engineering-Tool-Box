@@ -43,16 +43,16 @@ N.B. per verificare il nome della partizione utilizzare il comando lsblk
 **Se lo spazio va assegnato ad un nuovo mount (Es. /opt) passare alla seconda parte del file -> lvcreate -l 100%FREE -n <nome mnt> rhel
 Es. lvcreate -l 100%FREE -n opt rhel**
 	
-####Comando 1
+#### Comando 1
 ```
 lvextend -l +100%FREE /dev/mapper/<partizione da espandere Es. rhel-root>
 ```
-####Se il precedente comando è deprecato (sono su una nuova versione)
+#### Se il precedente comando è deprecato (sono su una nuova versione)
 ```
 lvresizize -L +100%FREE /dev/mapper/<partizione da espandere Es. rhel-root>
 ```
 
-###Espandere il File System senza smontare il mount
+### Espandere il File System senza smontare il mount
 ```
 xfs_growfs <mount>  -> / per il mount root oppure /mount_di_interesse
 ``` 	 
