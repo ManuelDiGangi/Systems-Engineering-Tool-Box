@@ -69,7 +69,12 @@ accept_cookie=1 accetta i cookie come valore di ritorno
 ## Generazione di dizionari
 
 ### RSMangler
-Prende un elenco di parole es esegue varie manipolazioni, similmente a come fa jhon the ripper (in real time)
+Prende un elenco di parole ed esegue varie manipolazioni, similmente a come fa jhon the ripper (in real time)
 `rsmangler --file path -m 6 -x 8`
 
 -m indica il numero minimo, -x il massimo di caratteri di cui saranno composte le nuove password.
+
+### CeWL
+Crere elenchi di parole tramite lo spidering di un sito web, analizza un determinato url ad una profondità specificata ed opzionalmente seguendo i collegamenti.
+
+`cewl https://<sito_web>`
