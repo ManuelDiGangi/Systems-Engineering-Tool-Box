@@ -16,22 +16,22 @@ N.B.: per effettuare un'enumerazione necessitiamo di credenziali (non amministra
  - Lab.2 - Enumerazione anonima utenti
    sudo nmap -sS -p 445 --script=smb-enum-users <ip/range>
 
- - Lab. 3 - Enumerazione utenti autenticata
+ - Lab.3 - Enumerazione utenti autenticata
    sudo nmap -sS -p 445 --script=smb-enum-user --script-args smbusername='utenteglobale', smbpassword='Pa$$word' <ip/range>
 
- - Lab. 4 - Enumerazione anonima dei gruppi
+ - Lab.4 - Enumerazione anonima dei gruppi
    sudo nmap -sS - p 445 --script-enum-groups <ip/range>
 
- - Lab. 5 - Enumerazione autenticata dei gruppi (per i DC utilizzare il -Pn in quanto non ripondono al ping)
+ - Lab.5 - Enumerazione autenticata dei gruppi (per i DC utilizzare il -Pn in quanto non ripondono al ping)
    sudo nmap -Pn -sS -p 445 --script=smb-enum-groups --script-args smbusername='utenteglobale', smbpassword='Pa$$word' <ip/range>
 
-- Lab. 6 - Enumerazione anonima attraverso delle share di rete
+- Lab.6 - Enumerazione anonima attraverso delle share di rete
   sudo nmap -sS -p 445 --script=smb-enum-shares <ip/range>
 
-- Lab. 7 - Enumerazione autenticata attraverso delle share di rete
+- Lab.7 - Enumerazione autenticata attraverso delle share di rete
   sudo nmap -Pn -sS -p 445 --script=smb-enum-shares --script-args smbusername='utenteglobale', smbpassword='Pa$$word' <ip/range>
 
-- Lab. 8 - Enumerazione autenticata delle sessioni
+- Lab.8 - Enumerazione autenticata delle sessioni
   sudo nmap -Pn - sS -p 445 --script=smb-enum-sessions --script-args smbusername='utenteglobale', smbpassword='Pa$$word' <ip/range>
 
 ### NFS
@@ -39,10 +39,25 @@ Tutte le versioni si basano su RPC (Remote Procedure Calls), le versioni precede
 Servizi rpc ancora richiesti
  * rpc.mountd - riceve richieste di montaggio dai client e verifica che il FS richiesto sia attualmente esportato
  * rpc.nfsd - consente la definizione di versioni e protocolli NFS espliciti che il server annuncia per soddisfare le richieste dinamiche dei client NFS
- * rpc.lockd - consente ai client NFS di bloccare i file (implementa Network Lock Manager)
- * rcp.statd - implementa il procotollo RPC Network Status Monitor, il quale notifica ai client quando un server NFS viene riavviato senza essere arrestato normalemnte
+ * rpc.lockd (ormai integrato nel protocollo) - consente ai client NFS di bloccare i file (implementa Network Lock Manager)
+ * rcp.statd (ormai integrato nel protocollo) - implementa il procotollo RPC Network Status Monitor, il quale notifica ai client quando un server NFS viene riavviato senza essere arrestato normalemnte
  * rpc.rqoutad - fornisce informazioni sulla qutoa utente per gli utenti remoti
- * 
+ * rpc.idmapd - questo processo fornisce un servizio di mappatura tra nomi utente e UID e GID locali (principio AAA)
+
+Nmap fornisce degli script NSE utilizzabili nell'enumerazione 
+``` markdown
+/usr/share/nmap/scripts/rpcinfo.nse
+                        nfs-ls.nse
+                        nfs-showmount.nse
+                        nsf-statfs.nse
+```
+
+ - Lab.1 - identificazione host con portmapper/rpcbind
+   nmap -v -p 111 -Pn <ip>
+
+- Lab.2 - 
+   
+NFS v4, il servizio RPC ascolta sulla porta TCP 2049
 L'audito di sicurezza è una forma partricolare di scansione, non punta direttamente ed esclusivamente a verificare la presenza di debolezze/vulnerabilità, ma è orientata all'aderenza a criteri di sicurezza dettati da standard.
 
 Standard di riferimento
