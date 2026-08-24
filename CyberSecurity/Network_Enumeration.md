@@ -34,8 +34,12 @@ N.B.: per effettuare un'enumerazione necessitiamo di credenziali (non amministra
 - Lab.8 - Enumerazione autenticata delle sessioni
   sudo nmap -Pn - sS -p 445 --script=smb-enum-sessions --script-args smbusername='utenteglobale', smbpassword='Pa$$word' <ip/range>
 
+---
+
 ### NFS
 Tutte le versioni si basano su RPC (Remote Procedure Calls), le versioni precedenti la v4 si basano su port mapper (rpcbind), un servizio che accetta prenotazioni alle porte dei servizi, risponde alle richieste e imposta le connessioni assegnando dinamicamente le porte (per questo era un grosso problema per la configurazione di ACL firewall).
+NFS v4, il servizio RPC ascolta sulla porta TCP 2049
+
 Servizi rpc ancora richiesti
  * rpc.mountd - riceve richieste di montaggio dai client e verifica che il FS richiesto sia attualmente esportato
  * rpc.nfsd - consente la definizione di versioni e protocolli NFS espliciti che il server annuncia per soddisfare le richieste dinamiche dei client NFS
@@ -55,24 +59,31 @@ Nmap fornisce degli script NSE utilizzabili nell'enumerazione
  - Lab.1 - identificazione host con portmapper/rpcbind
    nmap -v -p 111 -Pn <ip>
 
-- Lab.2 - 
-   
-NFS v4, il servizio RPC ascolta sulla porta TCP 2049
-L'audito di sicurezza è una forma partricolare di scansione, non punta direttamente ed esclusivamente a verificare la presenza di debolezze/vulnerabilità, ma è orientata all'aderenza a criteri di sicurezza dettati da standard.
+- Lab.2 - ottenere i servizi registrati
+  nmap -sV -p 111 -Pn --script=rcpinfo <ip>
 
-Standard di riferimento
-* PCI-DSS
-* SCAP
+- Lab.3 - verificare le esportazioni (equivale al comando showmount)
+  nmap -sV -p 111 -Pn --scripts=nfs-showmount <ip/range>
 
-Criteri di sicurezza dei vendor
-* MSCT
+- Lab.4 - enumerazione dei file
+  sudo nmap -sV -p 111 --script=nfs-ls <ip/range>
 
----
+- Lab.5 - informazioni e statisstiche del disco
+  sudo nmap -sV -p 111 --script=nfs-statfs <ip/range>
 
-## PCI-DSS
-E' uno standard per la sicurezza delle informazioni. la conformità è obbligatoria per tutte le organizzazioni che si occupano di dati relativi a transazioni effettuate con carte di pagamento.
-Lo standard si basa su 6 principi e 12 requisiti (i quali hanno sotto-requisiti)
+--- 
 
+### RPC su windows
+Enumerazione con RPC client, uno strumento interattivo e bach(parte non interattiva)
+
+- Lab.1 - connessione al DC
+  rpcclient -U 'utenteglobale%Pa$w0rd' <ip_target>
+   'questo comando avvierà il tool dal quale sarà possibile lanciare i comandi, come ad esempio help'
+  'querydominfo': otterremo info del dominio
+  'enumdomuser': enumereremo gli utenti del dominio + gli utenti locali
+  'enumdomgroups': enumerazione dei gruppi del dominio
+  'querygroup <RID>': richiederemo informazioni dettagliate sugli utenti/gruppi
+  
 | Principio | Requisito |
 |---|---|
 | Creare e gestire una rete protetta | **Requisito 1:** installare e gestire una configurazione firewall per proteggere i dati sui titolari di carta |
