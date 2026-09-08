@@ -5,12 +5,12 @@ Tutti i comandi vanno eseguiti con sudo
 ---
 ### Aggiorna la tabella degli spazi di memoria
 
-```
+```bash
 parted /dev/sda -> fix		
 ```
 
 ### Visualizzare il layout della partizione, serve a verificare la dimensione del disco ed il settore finale
-```
+```bash
 print
 ```
 
@@ -22,16 +22,16 @@ Es. output
 
 ### Estensione del disco
 Il comando sposta il settore finale, in questo caso gli diamo il 100% dello spazio aggiunto
-```
+```bash
 resizepart <numero della partizione presa dalla tabella sopra> 100%	
 ```
 ### Usciamo dallo strumento parted
-```
+```bash
 quit
 ```
 	
 ### Aggiornare il Phisical Volume lvm e rendere lo spazio visibile al Volume Group
-```
+```bash
 pvresize /dev/sda
 ```
 
@@ -44,16 +44,16 @@ N.B. per verificare il nome della partizione utilizzare il comando lsblk
 Es. lvcreate -l 100%FREE -n opt rhel**
 	
 #### Comando 1
-```
+```bash
 lvextend -l +100%FREE /dev/mapper/<partizione da espandere Es. rhel-root>
 ```
 #### Se il precedente comando è deprecato (sono su una nuova versione)
-```
+```bash
 lvresizize -L +100%FREE /dev/mapper/<partizione da espandere Es. rhel-root>
 ```
 
 ### Espandere il File System senza smontare il mount
-```
+```bash
 xfs_growfs <mount>  -> / per il mount root oppure /mount_di_interesse
 ``` 	 
 
@@ -62,27 +62,27 @@ xfs_growfs <mount>  -> / per il mount root oppure /mount_di_interesse
 # MANIPOLAZIONE DEI MOUNT		
 										
 ### Copiamo tutte le home directory che ci interessa mantenere in /mnt/backup/home
-```
+```bash
 sudo mkdir -p /mnt/backup/home
 sudo rsync -aHAX --numeric-ids /path/dir_sorgente/ /path/dir_destinazione/  attenzione a mettere l'ultimo /
 ```
 
 ### Verifica se i file copiati sono effettivamente allineati
-```
+```bash
 rsync -aHAXn --numeric-ids --delete /home/glide/ /mnt/backup/home/glide/
 rsync -aHAXn --numeric-ids --delete /home/servicenow/ /mnt/backup/home/servicenow/
 ```
 ### Entro in modalità single user
 N.B. rescue.target non cambia il target di default permanente, isola solo temporaneamente il sistema in modalità manutenzione.
-```
+```bash
 systemctl isolate rescue.target
 ```
 ### Controllo i processi che utilizzqano ancora il mnt
-```
+```bash
 sudo lsof /home
 ```
 ### Forzo la chiusura
-```
+```bash
 sudo fuser -km /home
 ```
 ### Smonto ed elimino rhel-home
@@ -91,7 +91,7 @@ sudo umount /home
 lvremove /dev/rhel/home
 ```
 ### Ricreiamo e montiamo il mnt
-```
+```bash
 sudo lvcreate -L 15G -n home rhel
 sudo mkfs.xfs /dev/rhel/home  cancella tutti i vecchi dati e crea il nuovo file system XFS
 mount /home
@@ -101,7 +101,7 @@ mkfs.xfs /dev/rhel/opt
 ```
 
 ### Modifica il file /etc/fstab e aggiungi:
-```
+```bash
 /dev/mapper/rhel-opt /opt xfs defaults 0 0
 mount -a  	# refresha file e applica modifiche
 ```
@@ -109,18 +109,18 @@ mount -a  	# refresha file e applica modifiche
 ### Ricreiamo le home directory dello step 2
 servicenow la rimettiamo in /home
 glide andrà dentro /opt
-```
+```bash
 sudo mkdir -p /home/servicenow/
 sudo mkdir -p /opt/glide/
 ```
 		
 ### Copiamo i file nelle dir di destinazione
-```
+```bash
 sudo rsync -aHAX --numeric-ids /path/dir_sorgente/ /path/dir_destinazione/  attenzione a mettere l'ultimo /
 ```
 
 ### Per uscire e tornare al normale avvio multiutente
-```
+```bash
 systemctl default
 ```	
 Oppure, scelta più pulita dopo manipolazione mount/LVM: reboot
