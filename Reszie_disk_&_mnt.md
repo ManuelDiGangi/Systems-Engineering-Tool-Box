@@ -10,6 +10,7 @@ parted /dev/sda -> fix
 ```
 
 ### Visualizzare il layout della partizione, serve a verificare la dimensione del disco ed il settore finale
+
 ```bash
 print
 ```
@@ -22,6 +23,7 @@ Es. output
 
 ### Estensione del disco
 Il comando sposta il settore finale, in questo caso gli diamo il 100% dello spazio aggiunto
+
 ```bash
 resizepart <numero della partizione presa dalla tabella sopra> 100%	
 ```
